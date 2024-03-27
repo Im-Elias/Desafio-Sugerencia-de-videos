@@ -1,17 +1,7 @@
 //Modulo de reproducción
 const moduloVideos = (url, id) => {
   (() => {
-    switch (id) {
-      case "musica":
-        document.getElementById(id).setAttribute("src", url);
-        break;
-      case "peliculas":
-        document.getElementById(id).setAttribute("src", url);
-        break;
-      case "series":
-        document.getElementById(id).setAttribute("src", url);
-        break;
-    }
+    document.getElementById(id).setAttribute("src", url);
   })();
 };
 
@@ -23,7 +13,9 @@ class Multimedia {
   getUrl() {
     return this._url;
   }
-  setInicio() {
+  setInicio(tiempo) {
+    this._url = this._url + "&t=" + "&amp;start=" + tiempo;
+    moduloVideos(this.getUrl(), this.id);
     return "Este método es para realizar un cambio en la URL del video";
   }
 }
@@ -34,10 +26,6 @@ class Reproductor extends Multimedia {
     this.id = id;
   }
   playMultimedia() {
-    moduloVideos(this.getUrl(), this.id);
-  }
-  setInicio(tiempo) {
-    this._url = this._url + "&t=" + "&amp;start=" + tiempo;
     moduloVideos(this.getUrl(), this.id);
   }
 }
